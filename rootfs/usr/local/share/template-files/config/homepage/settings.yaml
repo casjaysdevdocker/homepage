@@ -1,9 +1,18 @@
----
 # For configuration options and examples, please see:
 # https://gethomepage.dev/en/configs/settings
+---
 title: StartPage
 theme: dark
-color: slate
+color: purple
 target: _blank
 language: en
-headerStyle: slate
+headerStyle: boxed
+
+layout:
+  Media:
+    style: row
+    columns: 4
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
