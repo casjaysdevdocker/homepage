@@ -3,7 +3,7 @@
 
 title: StartPage
 theme: dark
-color: purple
+color: slate
 target: _blank
 language: en
-headerStyle: boxed
+headerStyle: slate
