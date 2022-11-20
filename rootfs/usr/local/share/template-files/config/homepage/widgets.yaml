@@ -9,7 +9,7 @@
 - search:
     focus: true
     target: _blank
-    provider: custom
+    provider: duckduckgo
     url: https://search.casjay.net/?q=
 
 - datetime:
