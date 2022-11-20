@@ -1,12 +1,19 @@
 ---
 # For configuration options and examples, please see:
-# https://github.com/benphelps/homepage/wiki/Information-Widgets
+# https://gethomepage.dev/en/configs/service-widgets/ https://gethomepage.dev/en/configs/widgets/
 
 - resources:
-    cpu: true
-    memory: true
-    disk: /
+  cpu: true
+  memory: true
+  disk: /
 
 - search:
-    provider: duckduckgo
-    target: _blank
+  provider: custom
+  url: https://search.casjay.net/?q=
+  target: _blank
+
+- datetime:
+  format:
+    dateStyle: short
+    timeStyle: short
+    hour12: false

@@ -1,18 +1,7 @@
 ---
 # For configuration options and examples, please see:
-# https://github.com/benphelps/homepage/wiki/Services
+# https://gethomepage.dev/en/configs/services/
 
-- My First Group:
-    - My First Service:
-        href: http://localhost/
-        description: Homepage is awesome
-
-- My Second Group:
-    - My Second Service:
-        href: http://localhost/
-        description: Homepage is the best
-
-- My Third Group:
-    - My Third Service:
-        href: http://localhost/
-        description: Homepage is 😎
+widget:
+  type: mastodon
+  url: https://mastodon.social
