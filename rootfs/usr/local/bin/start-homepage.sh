@@ -18,6 +18,9 @@
 # @@sudo/root        :  no
 # @@Template         :  other/start-service
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Set trap
+trap -- 'retVal=$?;kill -9 $$;exit $retVal' SIGINT SIGTERM ERR EXIT
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set functions
 __cd() { [ -d "$1" ] && builtin cd "$1" || return 1; }
 __curl() { curl -q -LSsf -o /dev/null "$@" &>/dev/null || return 10; }
@@ -43,7 +46,6 @@ __heath_check() {
 __exec_command() {
   local exitCode=0
   local cmd="${*:-bash -l}"
-  [ -n "$WORKDIR" ] && __cd "$WORKDIR"
   echo "Executing: $cmd"
   $cmd || exitCode=1
   [ "$exitCode" = 0 ] || exitCode=10
@@ -131,9 +133,14 @@ fi
 [ -f "/config/.env.sh" ] && . "/config/.env.sh"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Actions based on env
-[ -L "/config/homepage" ] || ln -sf "/app/config" "/config/homepage"
+[ -d "/app/config" ] && [ ! -d "/config/homepage" ] && mv -f "/app/config" "/config/homepage"
 [ -e "/usr/bin/homepage" ] || ln -sf "$(command -v node 2>/dev/null)" "/usr/bin/homepage"
-
+[ -d "/config/homepage" ] || mkdir -p "/config/homepage"
+[ -d "/app/config" ] && rm -Rf "/app/config"
+ln -sf "/config/homepage" "/app/config"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Change to working dir
+[ -n "$WORKDIR" ] && __cd "$WORKDIR"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # begin main app
 case "$1" in

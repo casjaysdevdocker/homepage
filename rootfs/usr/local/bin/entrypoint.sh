@@ -12,11 +12,14 @@
 # @@Description      :  entrypoint point for homepage
 # @@Changelog        :  New script
 # @@TODO             :  Better documentation
-# @@Other            :  
-# @@Resource         :  
+# @@Other            :
+# @@Resource         :
 # @@Terminal App     :  no
 # @@sudo/root        :  no
 # @@Template         :  other/docker-entrypoint
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Setup trap
+trap 'retVal=$?;kill -9 $$;exit $retVal' SIGINT
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set bash options
 [ -n "$DEBUG" ] && set -x
